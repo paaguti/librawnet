@@ -30,8 +30,9 @@ $(BIN_PATH)/rawnetcc: $(SRC_PATH)/rawnetcc.c
 .PHONY: clean all install uninstall
 
 all: $(LIB_PATH)/librawnet.so.1.0 $(LIB_PATH)/librawnet.a $(BIN_PATH)/rawnetcc
-	mkdir $(LIB_PATH)
-	mkdir $(BIN_PATH)
+	mkdir -p $(OBJ_PATH)
+	mkdir -p $(LIB_PATH)
+	mkdir -p $(BIN_PATH)
 
 clean:
 	rm -f $(LIB_PATH)/librawnet.so.1.0 \
