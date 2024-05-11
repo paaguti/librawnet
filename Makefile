@@ -20,10 +20,10 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(DEPS)
 	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 $(LIB_PATH)/librawnet.a: $(OBJ)
-	mkdir -p $(LIB_PATH)
 	ar -cq $@ $^
 
 $(LIB_PATH)/librawnet.so.1.0: $(OBJ)
+	mkdir -p $(LIB_PATH)
 	$(CC) $(CFLAGS) -shared -Wl,-soname,librawnet.so.1 -o $@ $^
 
 $(BIN_PATH)/rawnetcc: $(SRC_PATH)/rawnetcc.c
