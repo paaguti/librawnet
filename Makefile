@@ -16,15 +16,18 @@ _OBJ = rawnet.o timerms.o
 OBJ = $(patsubst %,$(OBJ_PATH)/%,$(_OBJ))
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(DEPS)
+	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 $(LIB_PATH)/librawnet.a: $(OBJ)
+	mkdir -p $(LIB_PATH)
 	ar -cq $@ $^
 
 $(LIB_PATH)/librawnet.so.1.0: $(OBJ)
 	$(CC) $(CFLAGS) -shared -Wl,-soname,librawnet.so.1 -o $@ $^
 
 $(BIN_PATH)/rawnetcc: $(SRC_PATH)/rawnetcc.c
+	mkdir -p $(BIN_PATH)
 	$(CC) $(CFLAGS) -o $@ $<
 
 .PHONY: clean all install uninstall
